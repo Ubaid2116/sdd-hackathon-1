@@ -1,0 +1,389 @@
+.heroBanner {
+  padding: clamp(3rem, 10vh, 6rem) 2rem clamp(2rem, 8vh, 5rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--ifm-color-white);
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  background: 
+    /* Base gradient */
+    linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
+}
+
+/* Mesh Grid Background */
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    /* Horizontal lines */
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    /* Vertical lines */
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: 
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.9) 30%,
+      transparent 70%
+    );
+  -webkit-mask-image: 
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.9) 30%,
+      transparent 70%
+    );
+  z-index: 1;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+/* Grid dots variation (optional - uncomment to use dots instead of lines) */
+/*
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -20px -20px;
+  mask-image: 
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.8) 30%,
+      transparent 70%
+    );
+  z-index: 1;
+}
+*/
+
+/* Animated floating grid elements */
+.gridFloaters {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gridFloat {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px 5px rgba(var(--ifm-color-primary-rgb), 0.3),
+    0 0 40px 10px rgba(var(--ifm-color-primary-rgb), 0.2);
+  animation: floatGrid 20s linear infinite;
+}
+
+.gridFloat:nth-child(1) {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.gridFloat:nth-child(2) {
+  top: 60%;
+  right: 20%;
+  animation-delay: -5s;
+  animation-duration: 30s;
+}
+
+.gridFloat:nth-child(3) {
+  bottom: 30%;
+  left: 25%;
+  animation-delay: -10s;
+  animation-duration: 35s;
+}
+
+/* 3D Grid Pattern (Advanced) */
+.grid3D {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: 
+    /* Front grid */
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    /* Diagonal grid */
+    linear-gradient(45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 
+    60px 60px,
+    60px 60px,
+    85px 85px,
+    85px 85px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  transform: perspective(500px) rotateX(60deg) translateZ(-100px);
+  z-index: 1;
+  filter: blur(0.5px);
+  animation: gridMove 40s linear infinite;
+}
+
+/* Subtle glow overlay */
+.glowOverlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      ellipse at 20% 20%,
+      rgba(var(--ifm-color-primary-rgb), 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 80%,
+      rgba(var(--ifm-color-secondary-rgb), 0.1) 0%,
+      transparent 50%
+    );
+  z-index: 2;
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+/* Card-like shadow effect for content */
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 3rem;
+  background: rgba(15, 15, 15, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    /* Inner shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    /* Multiple layer shadows for depth */
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    /* Colored glow */
+    0 0 50px rgba(var(--ifm-color-primary-rgb), 0.1);
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heroContent:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 80px rgba(var(--ifm-color-primary-rgb), 0.15);
+}
+
+/* Animated border effect */
+.heroContent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    rgba(var(--ifm-color-primary-rgb), 0.3) 50%,
+    transparent 80%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  animation: borderRotate 10s linear infinite;
+}
+
+/* Animations */
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position: 
+      120px 120px,
+      120px 120px,
+      170px 170px,
+      170px 170px;
+  }
+}
+
+@keyframes floatGrid {
+  0% {
+    transform: 
+      translate(0, 0) 
+      rotate(0deg) 
+      scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: 
+      translate(100px, -50px) 
+      rotate(90deg) 
+      scale(1.5);
+    opacity: 0.6;
+  }
+  50% {
+    transform: 
+      translate(200px, 50px) 
+      rotate(180deg) 
+      scale(2);
+    opacity: 0.3;
+  }
+  75% {
+    transform: 
+      translate(100px, 150px) 
+      rotate(270deg) 
+      scale(1.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: 
+      translate(0, 0) 
+      rotate(360deg) 
+      scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero title with text shadow */
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  text-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.3),
+    0 4px 30px rgba(var(--ifm-color-primary-rgb), 0.2);
+  position: relative;
+  display: inline-block;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 996px) {
+  .heroContent {
+    padding: 2rem;
+    margin: 0 1rem;
+    backdrop-filter: blur(15px);
+  }
+  
+  .grid3D {
+    transform: perspective(300px) rotateX(60deg) translateZ(-50px);
+    background-size: 
+      40px 40px,
+      40px 40px,
+      60px 60px,
+      60px 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    min-height: 80vh;
+  }
+  
+  .heroContent {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .heroContent::before {
+    border-radius: 16px;
+  }
+  
+  .grid3D {
+    opacity: 0.1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .heroBanner {
+    min-height: 75vh;
+  }
+  
+  .heroContent {
+    padding: 1.2rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Reduce grid intensity on mobile */
+  .heroBanner::before {
+    background-size: 30px 30px;
+    opacity: 0.3;
+  }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+  .heroBanner::before,
+  .grid3D,
+  .gridFloat,
+  .heroContent::before,
+  .heroContent {
+    animation: none;
+    transition: none;
+  }
+  
+  .gridFloat {
+    display: none;
+  }
+}
+
+/* Dark mode enhancement */
+html[data-theme='dark'] .heroBanner {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+html[data-theme='dark'] .heroContent {
+  background: rgba(10, 10, 10, 0.5);
+}
