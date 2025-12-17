@@ -1,22 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import AuthModal from '../../components/AuthModal';
-import NavbarItem from '@theme/NavbarItem';
+import { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import AuthModal from "../../components/AuthModal";
+import NavbarItem from "@theme/NavbarItem";
 
 function AuthLink({ authType }) {
   const { isLoggedIn, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    console.log('AuthLink: isModalOpen state changed to', isModalOpen);
-  }, [isModalOpen]);
-
   const handleAuthClick = () => {
-    console.log(`AuthLink: ${authType} clicked, setting isModalOpen to true`);
     setIsModalOpen(true);
   };
 
-  const buttonText = authType === 'login' ? 'Login' : 'Sign Up';
+  const buttonText = authType === "login" ? "Login" : "Sign Up";
 
   return (
     <>
@@ -35,7 +30,12 @@ function AuthLink({ authType }) {
           className="navbar-auth-link"
         />
       )}
-      <AuthModal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} initialLoginState={authType === 'login'} />
+
+      <AuthModal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        initialLoginState={authType === "login"}
+      />
     </>
   );
 }
