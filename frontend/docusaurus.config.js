@@ -71,7 +71,7 @@ const config = {
           type: "custom-AuthLink",
           position: "right",
           label: "Account",
-          authType: "login",  // This will show "Login" when not logged in, and "Logout" when logged in
+          authType: "login",
         },
       ],
     },
